@@ -4,13 +4,86 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Club X – Upcoming Events</title>
-  <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f8f8f8;
+      color: #222;
+    }
+    header {
+      background: black;
+      color: white;
+      text-align: center;
+      padding: 1.5em;
+    }
+    .logo {
+    width: 250px;
+    margin-bottom: 10px;
+    }
+    section {
+      padding: 2em;
+    }
+    .event {
+      background: white;
+      margin-bottom: 1.5em;
+      padding: 1em;
+      border-left: 4px solid #00ff00;
+      border-radius: 6px;
+    }
+    .button {
+      display: inline-block;
+      margin-top: 10px;
+      background: #00ff00;
+      color: black;
+      padding: 10px 16px;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+    .button.highlight {
+      background: black;
+      color: #00ff00;
+    }
+    .social-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+    .social-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      color: white;
+    }
+    .instagram {
+      background: #C13584;
+    }
+    .facebook {
+      background: #1877F2;
+    }
+    .shopx {
+      background: #66b445;
+    }
+    footer {
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 1em;
+      margin-top: 50px;
+    }
+  </style>
 </head>
 <body>
   <header>
     <img src="clubx-logo.png" alt="Club X logo" class="logo" />
-    <h1>CLUB X</h1>
     <p>The Sound of the Legend Club X in Breda, Eindhoven & Antwerpen</p>
   </header>
 
@@ -19,7 +92,7 @@
 
     <div class="event">
       <h3>🎧 Club X Goes Outdoor – Breda</h3>
-      <p>9 augustus 2025 | 14:00 - 22:00 | Eden Evemenement Breda</p>
+      <p>9 augustus 2025 | 14:00 - 22:00 | Eden Evenement Breda</p>
       <a href="https://store.ticketing.cm.com/clubxoutdoor2025/step/46611bb5-a3a7-4cff-be3e-da7a3033aaef" class="button">Tickets & Info</a>
     </div>
 
@@ -44,7 +117,7 @@
         <i class="fab fa-instagram"></i> Instagram
       </a>
       <a href="https://shop-x.org" class="social-btn shopx" target="_blank">
-        <i class="fab fa-shopx"></i> Shop X
+        <i class="fas fa-store"></i> Shop X
       </a>
       <a href="https://www.facebook.com/ClubXevents" class="social-btn facebook" target="_blank">
         <i class="fab fa-facebook-f"></i> Facebook
