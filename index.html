@@ -1,53 +1,118 @@
+
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Club X – Upcoming Events</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <meta charset="UTF-8">
+  <title>Club X Events</title>
+  <style>
+    body {
+      background: #00110f;
+      color: white;
+      font-family: Arial, sans-serif;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .logo {
+      max-width: 240px;
+      margin: 0 auto 30px;
+      display: block;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 30px;
+    }
+    .event {
+      background: #003420;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 600px;
+      text-align: left;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+    .event h2 {
+      font-size: 1.4em;
+      margin: 0 0 8px;
+    }
+    .event p {
+      margin: 0;
+      font-size: 0.95em;
+      color: #ccc;
+    }
+    .button {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: #00c853;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+    .footer {
+      margin-top: 40px;
+      font-weight: bold;
+    }
+    .social-buttons {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .social-buttons a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 6px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      background: #222;
+    }
+    .social-buttons img {
+      height: 20px;
+      width: 20px;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <img src="clubx-logo.png" alt="Club X logo" class="logo" />
-    <p>BThe Sound of the Legend Club X in Breda, Eindhoven & Antwerpen</p>
-  </header>
-  <section id="upcoming-events">
-    <h2>Upcoming Events</h2>
-    <div class="event">
-      <h3>🎧 Club X Goes Outdoor – Breda</h3>
-      <p>9 augustus 2025 | 14:00 - 22:00 | Eden Evenement Breda</p>
-      <a href="https://store.ticketing.cm.com/clubxoutdoor2025/step/46611bb5-a3a7-4cff-be3e-da7a3033aaef" class="button">Tickets & Info</a>
-    </div>
 
-    <div class="event">
-      <h3>🎧 32 jaar Club X - Antwerpen</h3>
-      <p>27 september 2025 | 21:00 - 6:00 | IKON Antwerpen</p>
-      <a href="https://www.eventbrite.nl/e/tickets-32-years-club-x-1205221041579" class="button">Tickets & Info</a>
-    </div>
+  <img src="clubx-logo.png" alt="Club X Logo" class="logo" />
 
-    <div class="event">
-      <h3>🎧 Club X On Tour – Eindhoven</h3>
-      <p>10 januari 2026 | 15:00 - 23:00 | Effenaar Eindhoven</p>
-      <a href="https://store.ticketing.cm.com/clubxeffenaar2026/step/af17699c-0531-4d96-945a-1e9b1d550332" class="button">Tickets & Info</a>
-    </div>
-    <div class="all-events">
-      <a href="#" class="button highlight">REGISTRATION – All events</a>
-    </div>
+  <h1>Upcoming Events</h1>
+
+  <div class="event">
+    <h2>Club X Outdoor – Breda</h2>
+    <p>9 augustus 2025 | 14:00–22:00 | Eden Evenement Breda</p>
+    <a class="button" href="https://store.ticketing.cm.com/clubxoutdoor2025/step/46611bb5-a3a7-4cff-be3e-da7a3033aaef">🎟️ Tickets & Info</a>
+  </div>
+
+  <div class="event">
+    <h2>32 jaar Club X – Antwerpen</h2>
+    <p>27 september 2025 | 21:00–06:00 | IKON Antwerpen</p>
+    <a class="button" href="https://www.eventbrite.nl/e/tickets-32-years-club-x-1205221041579">🎟️ Tickets & Info</a>
+  </div>
+
+  <div class="event">
+    <h2>Club X On Tour – Eindhoven</h2>
+    <p>10 januari 2026 | 15:00–23:00 | Effenaar Eindhoven</p>
+    <a class="button" href="https://store.ticketing.cm.com/clubxeffenaar2026/step/af17699c-0531-4d96-945a-1e9b1d550332">🎟️ Tickets & Info</a>
+  </div>
+
+  <div class="footer">
+    REGISTRATION – All events
     <div class="social-buttons">
-      <a href="https://www.instagram.com/clubxevents" class="social-btn instagram" target="_blank">
-        <i class="fab fa-instagram"></i> Instagram
+      <a href="https://www.instagram.com/clubxthelegend" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram Logo" />
       </a>
-      <a href="https://shop-x.org" class="social-btn shopx" target="_blank">
-        <i class="fas fa-store"></i> Shop X
+      <a href="https://www.facebook.com/share/p/1D4KEBzE3J/?mibextid=wwXIfr" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook Logo" />
       </a>
-      <a href="https://www.facebook.com/ClubXevents" class="social-btn facebook" target="_blank">
-        <i class="fab fa-facebook-f"></i> Facebook
+      <a href="https://shop-x.org" target="_blank"> Shop X
       </a>
     </div>
-  </section>
-  <footer>
-    <p>© 2025 Club X – All rights reserved.</p>
-  </footer>
+  </div>
 </body>
 </html>
