@@ -1,251 +1,166 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Club X Events</title>
-<style>
-  :root {
-    --green: #005028;
-    --green-light: #00c853;
-    --panel: rgba(0, 80, 40, 0.9);
-    --danger: #ff4d4d;
-  }
+  <meta charset="UTF-8">
+  <title>Club X Events</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+      position: relative;
+      overflow-x: hidden;
+    }
 
-  html, body {
-    margin: 0;
-    padding: 0;
-    min-height: 100%;
-    font-family: Arial, sans-serif;
-    color: white;
-    position: relative;
-  }
+    /* Achtergrondafbeelding met 75% opacity */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('BG_frame.jpg') no-repeat center center fixed;
+      background-size: cover;
+      opacity: 0.75;
+      z-index: -1;
+    }
 
-  body::before {
-    content: "";
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: url('BG_frame.jpg') no-repeat center center fixed;
-    background-size: cover;
-    opacity: 0.75;
-    z-index: -1;
-  }
+    .logo {
+      max-width: 360px;
+      margin: 40px auto 30px;
+      display: block;
+    }
 
-  /* ---------- TOP: menubalk ---------- */
-  header.top {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    background: rgba(0, 30, 15, 0.92);
-    backdrop-filter: blur(4px);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.4);
-  }
+    .title-box {
+      background: rgba(0, 80, 40, 0.9);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px auto 40px;
+      max-width: 800px;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    }
+    .title-box h1 {
+      margin: 0;
+      font-size: 2.5em;
+      color: white;
+    }
 
-  .logo {
-    max-width: 220px;
-    display: block;
-    margin: 14px auto 10px;
-  }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 30px;
+      color: white;
+    }
 
-  nav.menu {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    padding: 0 16px 14px;
-  }
+    .event {
+      background: rgba(0, 80, 40, 0.9);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 800px;
+      text-align: left;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    }
 
-  nav.menu button {
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.35);
-    color: white;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 0.9em;
-    cursor: pointer;
-    transition: background 0.2s, border-color 0.2s;
-  }
+    .event h2 {
+      font-size: 1.4em;
+      margin: 0 0 8px;
+      color: white;
+    }
 
-  nav.menu button:hover {
-    border-color: var(--green-light);
-  }
+    .event p {
+      margin: 0;
+      font-size: 0.95em;
+      color: #e0e0e0;
+    }
 
-  nav.menu button.active {
-    background: var(--green-light);
-    border-color: var(--green-light);
-    color: #00220f;
-    font-weight: bold;
-  }
+    .button {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 10px 20px;
+      background: #00c853;
+      color: white;
+      text-decoration: none;
+      border-radius: 15px;
+      font-weight: bold;
+    }
 
-  /* ---------- MAIN: inhoud van gekozen event ---------- */
-  main {
-    max-width: 800px;
-    margin: 30px auto;
-    padding: 0 16px 40px;
-  }
+    .footer {
+      margin-top: 50px;
+      font-weight: bold;
+      color: black;
+    }
 
-  .state-msg {
-    text-align: center;
-    padding: 40px 20px;
-    opacity: 0.85;
-  }
+    .social-buttons {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
 
-  .event-card {
-    background: var(--panel);
-    border-radius: 12px;
-    padding: 24px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.4);
-  }
+    .social-buttons a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-radius: 5px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      background: #222;
+      padding: 4px 8px;
+    }
 
-  .event-card h1 {
-    margin: 0 0 6px;
-    font-size: 1.8em;
-  }
+    .social-buttons a.shop {
+      background: #1a73e8;
+      height: 28px;
+      width: 110px;
+      justify-content: center;
+    }
 
-  .event-meta {
-    color: #d8f0e0;
-    font-size: 0.95em;
-    margin-bottom: 20px;
-  }
-
-  .event-meta span {
-    display: inline-block;
-    margin-right: 14px;
-  }
-
-  .tickets {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    margin-bottom: 22px;
-  }
-
-  .ticket-tier {
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    padding: 12px 14px;
-  }
-
-  .ticket-tier-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 8px;
-    font-size: 0.95em;
-  }
-
-  .ticket-tier-name {
-    font-weight: bold;
-  }
-
-  .ticket-tier-status {
-    font-size: 0.85em;
-    color: #cfe9d8;
-  }
-
-  .ticket-tier-status.soldout {
-    color: var(--danger);
-    font-weight: bold;
-  }
-
-  .bar-track {
-    height: 8px;
-    border-radius: 5px;
-    background: rgba(255,255,255,0.15);
-    overflow: hidden;
-  }
-
-  .bar-fill {
-    height: 100%;
-    background: var(--green-light);
-    border-radius: 5px;
-  }
-
-  .bar-fill.soldout {
-    background: var(--danger);
-  }
-
-  .button {
-    display: inline-block;
-    padding: 10px 22px;
-    background: var(--green-light);
-    color: #00220f;
-    text-decoration: none;
-    border-radius: 15px;
-    font-weight: bold;
-  }
-
-  .button.disabled {
-    background: #555;
-    color: #bbb;
-    pointer-events: none;
-  }
-
-  .fallback-note {
-    max-width: 800px;
-    margin: 20px auto -10px;
-    padding: 10px 14px;
-    border-radius: 8px;
-    border: 1px solid var(--danger);
-    background: rgba(255, 77, 77, 0.15);
-    font-size: 0.9em;
-    text-align: center;
-  }
-
-  .footer {
-    margin-top: 50px;
-    text-align: center;
-    font-weight: bold;
-    color: black;
-  }
-
-  .social-buttons {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
-  }
-
-  .social-buttons a {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    border-radius: 5px;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    background: #222;
-    padding: 4px 8px;
-  }
-
-  .social-buttons a.shop {
-    background: #1a73e8;
-    height: 28px;
-    width: 110px;
-    justify-content: center;
-  }
-
-  .social-buttons img {
-    height: 24px;
-    width: 24px;
-  }
-</style>
+    .social-buttons img {
+      height: 24px;
+      width: 24px;
+    }
+  </style>
 </head>
 <body>
 
-  <header class="top">
-    <img src="clubx-logo.png" alt="Club X Logo" class="logo" />
-    <nav class="menu" id="menu">
-      <!-- wordt automatisch gevuld op basis van de CSV -->
-    </nav>
-  </header>
+  <img src="clubx-logo.png" alt="Club X Logo" class="logo" />
 
-  <main id="main">
-    <div class="state-msg" id="stateMsg">Events laden…</div>
-  </main>
-
+  <div class="title-box">
+    <h1>Upcoming Events</h1>
+  </div>
+  
+  <div class="event">
+    <h2>Club X On Tour — The Intimate Edition</h2>
+    <p>10 oktober 2026 | De Avenue Breda</p>
+    <p><strong><span style="color: #ff0000;">* Early Birds tickets SOLD OUT *</span></strong></p>
+    <p><strong><span style="color: #ff0000;">* Regular tickets SOLD OUT *</span></strong></p>
+    <p><strong><span style="color: #ff0000;">* Final tickets SOLD OUT *</span></strong></p>
+    <p>* Beperkt aantal — op = op *</p>
+    <a class="button" href="https://sales.ticketing.cm.com/ClubXOnTour10-10-2026">Tickets & Info</a>
+  </div>
+  <div class="event">
+    <h2>Club X On Tour — Rotterdam</h2>
+    <p>14 november 2026 | HAL4 aan de Maas Rotterdam</p>
+    <p><strong><span style="color: #ff0000;">* Loyalty tickets sold out *</span></strong></p>
+    <p>* Early Bird 50% sold out *</p>
+    <p>* Regular ticket 65% sold *</p>
+    <p>* Beperkt aantal — op = op *</p>
+    <a class="button" href="https://sales.ticketing.cm.com/ClubXOnTourRotterdam2026">Tickets & Info</a>
+  </div>
+  <div class="event">
+    <h2>Club X On Tour XXL</h2>
+    <p>23 januari 2027 | Effenaar Eindhoven</p>
+    <p>* Super Early Birds tickets zijn NU beschikbaar *</p>
+    <p>* Beperkt aantal — op = op *</p>
+    <a class="button" href="https://sales.ticketing.cm.com/ClubXOnTourXXL23-01-2027">Tickets & Info</a>
+  </div>
   <div class="footer">
     REGISTRATION – All events
     <div class="social-buttons">
@@ -261,286 +176,6 @@
       </a>
     </div>
   </div>
-
-<script>
-/* =========================================================================
-   CLUB X — EVENTS
-   -------------------------------------------------------------------------
-   De site haalt alle events uit een Google Spreadsheet. Deze HTML hoeft
-   normaal nooit meer aangepast te worden — beheer gebeurt in het document.
-
-   BEHEER (in de spreadsheet, eerste tabblad):
-     Rij 1 = kolomkoppen:
-       Titel | Datum | Locatie | Uur | TicketLink |
-       SuperEarlyBird_% | EarlyBird_% | Regular_% | Loyalty_% | Exclusive_%
-     Vanaf rij 2 = één rij per event. Lege rijen worden overgeslagen.
-     Percentages: gewone getallen 0 t/m 100 (kolommen opmaken als GETAL,
-     niet als 'Percentage' — anders exporteert Google 45% als 0,45).
-     Bij 100 verschijnt "UITVERKOCHT"; staan alle vijf op 100, dan wordt de
-     ticketknop grijs en uitgeschakeld.
-     Een event verwijderen = de rij verwijderen. De volgorde van de rijen
-     bepaalt de volgorde van de menuknoppen.
-
-   TOEGANG:
-     Beheerders krijgen de rol "Bewerker" op het document.
-     Voor de site zelf volstaat: Delen > Iedereen met de link > Lezer.
-
-   NA EEN WIJZIGING:
-     Google bewaart automatisch; op de site een harde refresh doen
-     (Ctrl+Shift+R / Cmd+Shift+R). Console (F12) toont welke bron gebruikt is.
-   ========================================================================= */
-  /* Sheet-ID van de events-spreadsheet. Staat in de URL van het document:
-     .../spreadsheets/d/<SHEET_ID>/edit                                     */
-  const SHEET_ID = "1TVSZ3CTN8VJy73q1ScBPSLtQtE3MCIAnONGwMHXZC90";
-
-  /* Het PUBLISH-ID is iets anders dan het SHEET_ID hierboven. Je krijgt het via
-     Bestand > Delen > Publiceren op internet > CSV. Het staat in de link tussen
-     /d/e/ en /pub.
-
-     LET OP: controleer eenmalig of dit publish-ID hoort bij DEZELFDE spreadsheet
-     als SHEET_ID. Open de link in een browser: zie je de actuele events, dan is
-     het goed. Zie je oude events, dan is dit een publicatie van een ouder
-     document -> zet PUBLISH_ID op "" , anders toont de site stiekem oude data. */
-  const PUBLISH_ID = "2PACX-1vSZTCUphDDBAQRPt-UvGLAUL6U4IciVt_VtN5LRilX82u98WGAJZQh-gdbXoZAQvvmYjuSXFHDpfSgw";
-
-  /* Bronnen worden op volgorde geprobeerd. De eerste die werkt, wint.
-     - lokaal : events.csv naast deze index.html. Wordt elke 15 min automatisch
-                bijgewerkt door de GitHub Action (.github/workflows/sync-sheet.yml)
-                die de Google Sheet uitleest en hier wegschrijft. Geen CORS-issues,
-                want dit is dezelfde site.
-     - gviz/pub : rechtstreekse Google-links, enkel als noodgreep zolang de Action
-                nog niet gedraaid heeft of tijdelijk faalt. */
-  const CSV_SOURCES = [
-    { naam: "lokaal bestand", url: "events.csv" },
-    { naam: "gviz (live)", url: `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv` },
-    PUBLISH_ID
-      ? { naam: "gepubliceerde CSV", url: `https://docs.google.com/spreadsheets/d/e/${PUBLISH_ID}/pub?output=csv` }
-      : null
-  ].filter(Boolean);
-
-
-  /* ---------------- kleine CSV-parser ---------------- */
-  function parseCSV(text) {
-    text = text.replace(/^\uFEFF/, ""); // Google zet een BOM voor de eerste kolomkop
-    const rows = [];
-    let row = [], field = "", inQuotes = false;
-    for (let i = 0; i < text.length; i++) {
-      const c = text[i], next = text[i + 1];
-      if (inQuotes) {
-        if (c === '"' && next === '"') { field += '"'; i++; }
-        else if (c === '"') { inQuotes = false; }
-        else { field += c; }
-      } else {
-        if (c === '"') inQuotes = true;
-        else if (c === ',') { row.push(field); field = ""; }
-        else if (c === '\n' || c === '\r') {
-          if (field !== "" || row.length) { row.push(field); rows.push(row); row = []; field = ""; }
-          if (c === '\r' && next === '\n') i++;
-        } else field += c;
-      }
-    }
-    if (field !== "" || row.length) { row.push(field); rows.push(row); }
-
-    const headers = rows.shift().map(h => h.trim());
-    return rows
-      .filter(r => r.some(v => v.trim() !== ""))
-      .map(r => Object.fromEntries(headers.map((h, idx) => [h, (r[idx] || "").trim()])));
-  }
-
-  /* Kolomkoppen worden soepel vergeleken: hoofdletters, spaties, underscores
-     en % worden genegeerd. "Regular_%", "Regular %" en "regular" zijn dus
-     allemaal geldig.                                                        */
-  function normKey(k) {
-    return String(k).toLowerCase().replace(/[\s_%.\-]/g, "");
-  }
-
-  function field(ev, name) {
-    const target = normKey(name);
-    for (const k in ev) {
-      if (normKey(k) === target) return ev[k];
-    }
-    return "";
-  }
-
-  function clampPercent(raw) {
-    const n = parseFloat(String(raw).replace("%", "").replace(",", "."));
-    if (isNaN(n)) return 0;
-    return Math.min(100, Math.max(0, n));
-  }
-
-  function slugify(str) {
-    return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-      .replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-  }
-
-  /* ---------------- render ---------------- */
-  function renderMenu(events) {
-    const menu = document.getElementById("menu");
-    menu.innerHTML = "";
-    events.forEach((ev, i) => {
-      const btn = document.createElement("button");
-      btn.textContent = field(ev, "Titel");
-      btn.dataset.slug = slugify(field(ev, "Titel")) || ("event-" + i);
-      btn.addEventListener("click", () => selectEvent(events, btn.dataset.slug));
-      menu.appendChild(btn);
-    });
-  }
-
-  function renderEvent(ev) {
-    const allTiersSoldOut = TICKET_TIERS.every(t => clampPercent(field(ev, t.key)) >= 100);
-
-    const tiersHtml = TICKET_TIERS.map(t => {
-      const pct = clampPercent(field(ev, t.key));
-      const soldOut = pct >= 100;
-      return `
-        <div class="ticket-tier">
-          <div class="ticket-tier-top">
-            <span class="ticket-tier-name">${t.label}</span>
-            <span class="ticket-tier-status ${soldOut ? "soldout" : ""}">
-              ${soldOut ? "UITVERKOCHT" : pct + "% verkocht"}
-            </span>
-          </div>
-          <div class="bar-track">
-            <div class="bar-fill ${soldOut ? "soldout" : ""}" style="width:${pct}%;"></div>
-          </div>
-        </div>`;
-    }).join("");
-
-    document.getElementById("main").innerHTML = `
-      <div class="event-card">
-        <h1>${field(ev, "Titel")}</h1>
-        <div class="event-meta">
-          <span>📅 ${field(ev, "Datum")}</span>
-          <span>📍 ${field(ev, "Locatie")}</span>
-          ${field(ev, "Uur") ? `<span>🕒 ${field(ev, "Uur")}</span>` : ""}
-        </div>
-        <div class="tickets">${tiersHtml}</div>
-        <a class="button ${allTiersSoldOut ? "disabled" : ""}"
-           href="${allTiersSoldOut ? "#" : field(ev, "TicketLink")}"
-           ${allTiersSoldOut ? "" : 'target="_blank"'}>
-          ${allTiersSoldOut ? "Uitverkocht" : "Tickets & Info"}
-        </a>
-      </div>`;
-  }
-
-  function selectEvent(events, slug) {
-    const ev = events.find((e, i) => (slugify(field(e, "Titel")) || ("event-" + i)) === slug);
-    if (!ev) return;
-    document.querySelectorAll("nav.menu button").forEach(b =>
-      b.classList.toggle("active", b.dataset.slug === slug));
-    renderEvent(ev);
-    history.replaceState(null, "", "#" + slug);
-  }
-
-  function boot(events, isFallback) {
-    // Zichtbare waarschuwing bij voorbeelddata, zodat niemand denkt dat dit
-    // de echte agenda is.
-    if (isFallback) {
-      const note = document.createElement("div");
-      note.className = "fallback-note";
-      note.textContent = "Let op: de events konden niet geladen worden. "
-        + "Hieronder staat voorbeelddata.";
-      document.getElementById("main").before(note);
-    }
-    if (!events.length) {
-      document.getElementById("stateMsg").textContent = "Op dit moment geen events gepland.";
-      return;
-    }
-    renderMenu(events);
-    const wanted = location.hash.replace("#", "");
-    const first = events.find((e, i) => (slugify(field(e, "Titel")) || ("event-" + i)) === wanted) ? wanted
-      : (slugify(field(events[0], "Titel")) || "event-0");
-    selectEvent(events, first);
-  }
-
-  function loadData() {
-    if (!CSV_SOURCES.length) {
-      console.warn("Geen CSV-bron ingesteld. Fallback-data wordt gebruikt.");
-      boot(FALLBACK_DATA, true);
-      return;
-    }
-
-    (async () => {
-      for (const bron of CSV_SOURCES) {
-        try {
-          console.log("CSV laden vanaf [" + bron.naam + "]:", bron.url);
-          const res = await fetch(bron.url, { cache: "no-store" });
-          console.log("HTTP-status:", res.status);
-          if (!res.ok) throw new Error("HTTP " + res.status);
-
-          const text = await res.text();
-          if (/<!DOCTYPE|<html/i.test(text.slice(0, 200))) {
-            // Google stuurt HTML (inlogpagina) i.p.v. CSV -> rechten staan te streng.
-            throw new Error("HTML ontvangen i.p.v. CSV: document is niet publiek leesbaar.");
-          }
-
-          const events = parseCSV(text);
-          console.log("Aantal events uit CSV:", events.length);
-          if (!events.length) throw new Error("CSV bevat geen events.");
-
-          console.log("Events geladen via:", bron.naam);
-          boot(events);
-          return;
-        } catch (err) {
-          console.warn("Bron [" + bron.naam + "] mislukt:", err.message);
-        }
-      }
-
-      console.error("Alle CSV-bronnen mislukt. Fallback-data (voorbeeldevents) wordt getoond.");
-      boot(FALLBACK_DATA, true);
-    })();
-  }
-  // Voorbeelddata: alleen zichtbaar als GEEN ENKELE CSV-bron werkt.
-  // Zie je deze drie events op de site, dan faalt het laden (check de console).
-  const FALLBACK_DATA = [
-    {
-      Titel: "Club X On Tour — The Intimate Edition",
-      Datum: "10 oktober 2026",
-      Locatie: "De Avenue Breda",
-      Uur: "22:00",
-      TicketLink: "https://sales.ticketing.cm.com/ClubXOnTour10-10-2026",
-      "SuperEarlyBird_%": "0",
-      "EarlyBird_%": "100",
-      "Regular_%": "100",
-      "Loyalty_%": "0",
-      "Exclusive_%": "0"
-    },
-    {
-      Titel: "Club X On Tour — Rotterdam",
-      Datum: "14 november 2026",
-      Locatie: "HAL4 aan de Maas Rotterdam",
-      Uur: "22:00",
-      TicketLink: "https://sales.ticketing.cm.com/ClubXOnTourRotterdam2026",
-      "SuperEarlyBird_%": "0",
-      "EarlyBird_%": "50",
-      "Regular_%": "20",
-      "Loyalty_%": "100",
-      "Exclusive_%": "0"
-    },
-    {
-      Titel: "Club X On Tour XXL",
-      Datum: "23 januari 2027",
-      Locatie: "Effenaar Eindhoven",
-      Uur: "22:00",
-      TicketLink: "https://sales.ticketing.cm.com/ClubXOnTourXXL23-01-2027",
-      "SuperEarlyBird_%": "100",
-      "EarlyBird_%": "15",
-      "Regular_%": "0",
-      "Loyalty_%": "0",
-      "Exclusive_%": "0"
-    }
-  ];
-
-  const TICKET_TIERS = [
-    { key: "SuperEarlyBird_%", label: "Super Early Bird" },
-    { key: "EarlyBird_%", label: "Early Bird" },
-    { key: "Regular_%",   label: "Regular" },
-    { key: "Loyalty_%", label: "Loyalty" },
-    { key: "Exclusive_%", label: "Exclusive" }
-  ];
-
-  loadData();
-</script>
 
 </body>
 </html>
