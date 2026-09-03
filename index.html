@@ -367,6 +367,17 @@
     return Math.min(100, Math.max(0, n));
   }
 
+  /* Geeft null terug als de cel leeg is of "n/a"/"nvt" bevat -> dat ticket-type
+     bestaat niet voor dit event en wordt dus niet getoond. Anders een getal
+     tussen 0 en 100. */
+  function ticketPercent(raw) {
+    const cleaned = String(raw ?? "").trim().toLowerCase();
+    if (cleaned === "" || cleaned === "n/a" || cleaned === "nvt" || cleaned === "na") return null;
+    const n = parseFloat(cleaned.replace("%", "").replace(",", "."));
+    if (isNaN(n)) return null;
+    return Math.min(100, Math.max(0, n));
+  }
+  
   function slugify(str) {
     return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
       .replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
